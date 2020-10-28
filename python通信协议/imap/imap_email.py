@@ -1,8 +1,9 @@
+#coding=utf-8
 import imaplib
 import email
 import re
 
-# -*- coding: utf-8 -*-
+
 #imap收件服务器获取邮件，并找出其中的验证码
 def email_1(email_id,password_2,host_qq):
     '''imap server '''
