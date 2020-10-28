@@ -1,0 +1,4 @@
+python -m pip install --upgrade pip
+
+用pip安装pygame
+pip install pygame

@@ -1,0 +1,95 @@
+#对列表的操作，首先定义一个friends的列表，然后对其进行操作
+friends=["zhang3","li4","wang5","zhao6"]
+for friends_1 in friends:#从列表friends中取出一个元素，并储存在变量friends_1中
+    print(friends_1)#打印出变量friends_1,for语句中，执行的代码需要缩进，才会被py识别并重复执行。
+
+#例子2
+a=["1","2","3","4"]#创建一个列表a
+for b in a:#获取列表a的元素并储存在变量b中，注意冒号，冒号后面的语句是for循环执行的第一句。
+    print(b)
+
+#例子3
+pisa=["liulian","jirou","yumi"]
+for my_pisa in pisa:
+    print(my_pisa.title()+" "+"its Delicious!")
+print("I realy love it!")
+
+#创建数字列表，使用函数range（）,它会生成1，2，3，4，差一个，如需要生成1，2，3，4，5，则需要使用range（1，6）
+for numbers in range(1,5):
+    print(numbers)
+#可以使用list（）函数将range（）的结果直接转化为列表。将range（）作为list（）的参数，输出为一个数字列表
+#例子1
+numbers_1=list(range(1,5))#将range（）的结果作为list（）的参数，就可以将数字转化为列表
+print(numbers_1)
+#使用range（）还可以指定步长
+#例子1，打印1到10之间的偶数
+numbers_oushu=list(range(2,11,2))#range()第一个参数为起点，第二个为终点。第三个为步长（+2）
+print(numbers_oushu)
+#range()可以创建各种数字集，
+#例子1，将1，2，3，4，5，6，7，8，9，10的平方的值加在一个列表a_1中
+a_1=[]#创建空列表a
+for b in range(1,11):#数字集合1，10赋值到临时变量b中
+    a_2=b**2#变量a_2=b的平方
+    a_1.append(a_2)#将a_2的计算的值添加到列表a_1中
+print(a_1)#打印出a_1
+
+#简洁方法，可以不用临时变量a_2,直接将计算的平方的值加到列表中。
+a_1=[]
+for b in range(1,11):
+    a_1.append(b**2)
+print(a_1)
+
+
+#对数字列表进行简单的统计计算，取最大值max（），取最小值min（），求总和sum（）
+number_2=[1,2,3,55,6,88,100]
+print(max(number_2))
+print(min(number_2))
+print(sum(number_2))
+
+#列表解析法生成列表，
+a_3=[b**2 for b in range(1,11)]#循环将1到10的整数赋值给变量b，将b的值提供给b的平方的表达式，计算出结果，生成列表a_3
+print(a_3)
+
+#习题练习，例子1
+for a_4 in range(1,21):
+    print(a_4)
+
+a_5=list(range(1,1000001))#创建一个1到100万的列表，并用取最大值最小值的方法确认是否以1开头，以100万结尾，求1加到100万的和
+print(max(a_5))
+print(min(a_5))
+print(sum(a_5))
+
+
+#打印奇数，1到20的奇数
+a_6=list(range(1,21,2))
+for b_5 in range(1,21,2):
+    print(b_5)
+    
+print(a_6)
+
+#3的倍数，3到30
+a_7=list(range(3,31,3))
+for b_8 in range(3,31,3):
+    print(b_8)
+print(a_7)
+
+#1-10的立方
+b_10=[]
+for b_9 in range(1,11):
+    b_10.append(b_9**3)
+print(b_10)
+ 
+#立方解析，1-10的立方
+a_11=[m**3 for m in range(1,11)]
+print(a_11)
+
+
+
+
+
+
+
+
+
+
+

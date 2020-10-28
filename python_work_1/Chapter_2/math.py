@@ -1,0 +1,16 @@
+math=2+3
+print(math)
+math=3-2
+print(math)
+math=2*3
+print(math)
+math=3/2
+print(math)#基本计算
+math=3**2
+print(math)
+math=2+3**2
+print(math)
+math=0.13+0.14
+print(math)
+math=0.3*3
+print(math)

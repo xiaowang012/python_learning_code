@@ -1,0 +1,157 @@
+使用方案一执行测试用例结果如下：
+
+Enter a number:10
+10
+Test over
+Enter a number:.10
+Fs
+
+Ran 3 tests in 6.092s
+
+FAILED (failures=1, skipped=1)
+10
+Test over
+
+因为先执行test_case1,再执行test_case2,所以第一次输入10时，执行通过，返回. 第二次输入10时，执行不通过，返回F，最终一个用例通过，一个用例失败，还有一个用例是直接跳过的（装饰器）。
+
+ 使用方案二执行测试用例结果如下：
+
+Enter a number:10
+10
+Test over
+Enter a number:F10
+.
+
+Ran 2 tests in 4.973s
+
+FAILED (failures=1) 
+10
+Test over
+
+因为先执行test_case2,再执行test_case1,所以第一次输入10时，执行不通过，返回F , 第二次输入10时，执行通过，返回. ，最终一个用例通过，一个用例失败。
+
+使用方案三执行测试用例结果如下（执行测试用例顺序同方案一）：
+
+Enter a number:10
+10
+Test over
+Enter a number:.10
+Fs
+
+Ran 3 tests in 6.092s
+
+FAILED (failures=1, skipped=1)
+10
+Test over
+
+因为先执行test_case1,再执行test_case2,所以第一次输入10时，执行通过，返回. 第二次输入10时，执行不通过，返回F，最终一个用例通过，一个用例失败，还有一个用例是直接跳过的（装饰器）。
+
+ 
+
+三、使用unittest框架编写测试用例实例
+
+点击返回目录
+
+目录结构：
+
+
+
+百度搜索测试用例Test Case：
+
+复制代码
+
+# coding=utf-8
+'''
+Created on 2016-7-22
+@author: Jennifer
+Project:登录百度测试用例
+'''
+from selenium import webdriver
+import unittest, time
+
+class BaiduTest(unittest.TestCase):
+    def setUp(self):
+        self.driver = webdriver.Firefox()
+        self.driver.implicitly_wait(30) #隐性等待时间为30秒
+        self.base_url = "https://www.baidu.com"
+    
+    def test_baidu(self):
+        driver = self.driver
+        driver.get(self.base_url + "/")
+        driver.find_element_by_id("kw").clear()
+        driver.find_element_by_id("kw").send_keys("unittest")
+        driver.find_element_by_id("su").click()
+        time.sleep(3)
+        title=driver.title
+        self.assertEqual(title, u"unittest_百度搜索") 
+
+    def tearDown(self):
+        self.driver.quit()
+
+if __name__ == "__main__":
+    unittest.main()
+复制代码
+
+有道翻译测试用例Test Case：
+
+复制代码
+
+# coding=utf-8
+'''
+Created on 2016-7-22
+@author: Jennifer
+Project:使用有道翻译测试用例
+'''
+from selenium import webdriver
+import unittest, time
+
+class YoudaoTest(unittest.TestCase):
+    def setUp(self):
+        self.driver = webdriver.Firefox()
+        self.driver.implicitly_wait(30) #隐性等待时间为30秒
+        self.base_url = "http://www.youdao.com"
+    
+    def test_youdao(self):
+        driver = self.driver
+        driver.get(self.base_url + "/")
+        driver.find_element_by_id("translateContent").clear()
+        driver.find_element_by_id("translateContent").send_keys(u"你好")
+        driver.find_element_by_id("translateContent").submit()
+        time.sleep(3)
+        page_source=driver.page_source
+        self.assertIn( "hello",page_source) 
+
+    def tearDown(self):
+        self.driver.quit()
+
+if __name__ == "__main__":
+    unittest.main()
+复制代码
+
+web测试用例：通过测试套件TestSuite来组装多个测试用例。
+
+复制代码
+
+# coding=utf-8
+'''
+Created on 2016-7-26
+@author: Jennifer
+Project:编写Web测试用例
+'''
+import unittest
+from test_case import test_baidu
+from test_case import test_youdao
+
+#构造测试集
+suite = unittest.TestSuite()
+suite.addTest(test_baidu.BaiduTest('test_baidu'))
+suite.addTest(test_youdao.YoudaoTest('test_youdao'))
+
+if __name__=='__main__':
+    #执行测试
+    runner = unittest.TextTestRunner()
+    runner.run(suite)
+复制代码
+
+测试结果：
+

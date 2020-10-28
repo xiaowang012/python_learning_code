@@ -1,0 +1,2 @@
+players=["liubei","zhangfei","guanyu","zhugeliang"]
+print(players[:3])
